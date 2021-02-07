@@ -5,6 +5,9 @@
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+import numpy as np
 def loadings_plot(fa_loadings, loading_names, var_exp_prop, n_fctr = 4):
   # fa_loadings: 2D array [n_factor, n_loadings]
   # n_fctr: number factors to plot
@@ -29,8 +32,10 @@ def loadings_plot(fa_loadings, loading_names, var_exp_prop, n_fctr = 4):
     xaxis_loadings[int(n_loading*i):int(n_loading*(i+1)), 0] = np.linspace(x_axis[i]*0.1, x_axis[i]*0.9, n_loading) \
                                                                 + np.cumsum(np.r_[0,x_axis])[i]  
 
-    loading_scaled = fa_loadings[i]/np.linalg.norm(fa_loadings[i])
-    xaxis_loadings[n_loading*(i):n_loading*(i+1), 1] = loading_scaled
+    # loading_scaled = fa_loadings[i]/np.linalg.norm(fa_loadings[i])
+    # xaxis_loadings[n_loading*(i):n_loading*(i+1), 1] = loading_scaled
+    xaxis_loadings[n_loading*(i):n_loading*(i+1), 1] = fa_loadings[i]
+    
     # add loading names
     note_names = note_names + loading_names
     xticks.append('F'+str(i+1))
@@ -65,7 +70,6 @@ def loadings_plot(fa_loadings, loading_names, var_exp_prop, n_fctr = 4):
   plt.show()
 
   return 
-
 #   ax.set_xticks(x)
 # ax.set_xticklabels(labels)
 
