@@ -65,7 +65,7 @@ def loadings_plot(fa_loadings, loading_names, var_exp_prop, n_fctr = 4):
   
   plt.show()
   test  = np.cumsum(x_axis)
-  return xaxis_loadings[:,0].max(), xaxis_loadings
+  return
 
 #   ax.set_xticks(x)
 # ax.set_xticklabels(labels)
