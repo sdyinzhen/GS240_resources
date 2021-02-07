@@ -5,7 +5,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import numpy as np
-
 def loadings_plot(fa_loadings, loading_names, var_exp_prop, n_fctr = 4):
   # fa_loadings: 2D array [n_factor, n_loadings]
   # n_fctr: number factors to plot
@@ -42,7 +41,7 @@ def loadings_plot(fa_loadings, loading_names, var_exp_prop, n_fctr = 4):
   fig = plt.figure(figsize=(13,6))
   
   ax = fig.add_subplot(111)
-  ax.scatter(xaxis_loadings[:,0], xaxis_loadings[:,1], s=50)
+  ax.scatter(xaxis_loadings[:,0], xaxis_loadings[:,1], s=50, c='b')
   ax2 = ax.twiny()
   for i in range(len(xaxis_loadings)):
       plt.annotate(note_names[i], 
@@ -64,8 +63,11 @@ def loadings_plot(fa_loadings, loading_names, var_exp_prop, n_fctr = 4):
   ax.set_xlabel('variance explained', fontsize=14)
   
   plt.show()
-  test  = np.cumsum(x_axis)
-  return
+
+  return 
+
+#   ax.set_xticks(x)
+# ax.set_xticklabels(labels)
 
 #   ax.set_xticks(x)
 # ax.set_xticklabels(labels)
