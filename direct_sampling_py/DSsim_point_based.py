@@ -3,7 +3,8 @@
 ## Reference: 
 ## Zuo, et al. (2020). A Tree‐Based Direct Sampling Method for Stochastic Surface and Subsurface Hydrological Modeling. Water Resources Research, 56(2).
 import numpy as np
-from tqdm import tqdm
+#from tqdm import tqdm
+import tqdm.notebook as tq
 
 def DSsim_point_based(SimulationGrid,
                    TI,
@@ -59,7 +60,7 @@ def DSsim_point_based(SimulationGrid,
     
     TI_list = np.ndarray.tolist(TI)
 
-    for simulation_index in tqdm(Simulation_path_hard):
+    for simulation_index in tq.tqdm(Simulation_path_hard):
 
         center_y = Simulation_path_y_List[simulation_index]
         center_x = Simulation_path_x_List[simulation_index]
