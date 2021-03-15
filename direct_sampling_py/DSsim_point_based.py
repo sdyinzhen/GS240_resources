@@ -8,7 +8,7 @@ import tqdm.notebook as tq
 
 def DSsim_point_based(SimulationGrid,
                    TI,
-                   DS_PatternRadius = 15,
+                   DS_PatternRadius = 16,
                    DS_Neighbors = 30, 
                    DS_DistanceThreshold_factor = 0.05,
                    TI_SearchFraction = 0.2):
