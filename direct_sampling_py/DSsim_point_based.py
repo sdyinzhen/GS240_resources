@@ -8,31 +8,34 @@ import tqdm.notebook as tq
 
 def DSsim_point_based(SimulationGrid,
                    TI,
+                   DS_PatternRadius = 15,
                    DS_Neighbors = 30, 
-                   DS_SearchingRadius = 15,
                    DS_DistanceThreshold_factor = 0.05,
-                   DS_Fraction = 0.2):
+                   TI_SearchFraction = 0.2):
     '''
     This is the main function of point-based direct sampling. 
     Parameters - 
     SimulationGrid: simulation grid with hard data values, no-data area as np.nan, 2D array.
     TI: Trianining image, 2D array.
-    SGmax,SGmin: max and min values assigned to the simulation area.
-    DS_Neighbors: maximum neighborhood hard data points in data searching pattern.
     DS_SearchingRadius: searching radius to to obtain the data pattern. 
-    DS_DistanceThreshold_factor: DS_Threshold=DS_DistanceThreshold_factor*(SGmax-SGmin)
-    DS_Fraction: fractions of TI to search when computing the distance, searching path is randomized.
+    DS_Neighbors: maximum neighborhood hard data points in data searching pattern.
+    DS_DistanceThreshold_factor: DS_Threshold = DS_DistanceThreshold_factor*(max(SimulationGrid) - min(SimulationGrid))
+    TI_SearchFraction: fractions of TI to search when computing the distance, searching path is randomized.
     '''
     
     # specify the basic information about the simulation area
     SG_height, SG_width =SimulationGrid.shape[0], SimulationGrid.shape[1]
     SimulationGrid_List = np.ndarray.tolist(SimulationGrid)
 
-    SGmax, SGmin = SimulationGrid.max(), SimulationGrid.min()
+    SGmax = SimulationGrid[np.isfinite(SimulationGrid)].max()
+    SGmin = SimulationGrid[np.isfinite(SimulationGrid)].min()
     DS_Threshold = DS_DistanceThreshold_factor*(SGmax-SGmin)
 
     # specify hard data pattern
+    DS_SearchingRadius = DS_PatternRadius
     Collection_y_List, Collection_x_List = Specify_ConditioningDataSequence_Spiral(DS_SearchingRadius)
+    # Assign TI_SearchFraction 
+    DS_Fraction = TI_SearchFraction
         
     ### specify the simulation path ###
     x = np.arange(0, SG_width)
