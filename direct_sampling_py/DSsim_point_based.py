@@ -1,15 +1,13 @@
 ## DSsim_point_based - the Python 3 code package for direction sampling(DS). This DS method is point based.
 ## Authors: David Zhen Yin <yinzhen@stanford.edu>; Zuo Chen <chenzuo789@outlook.com>
 ## Reference: 
-## Zuo, et al. (2020). A Tree‐Based Direct Sampling Method for Stochastic Surface and Subsurface Hydrological Modeling. Water Resources Research, 56(2).
+## Zuo, et al. (2020). A Tree-Based Direct Sampling Method for Stochastic Surface and Subsurface Hydrological Modeling. Water Resources Research, 56(2).
 import numpy as np
 #from tqdm import tqdm
 import tqdm.notebook as tq
 
 def DSsim_point_based(SimulationGrid,
                    TI,
-                   SGmax,
-                   SGmin,
                    DS_Neighbors = 30, 
                    DS_SearchingRadius = 15,
                    DS_DistanceThreshold_factor = 0.05,
@@ -30,7 +28,9 @@ def DSsim_point_based(SimulationGrid,
     SG_height, SG_width =SimulationGrid.shape[0], SimulationGrid.shape[1]
     SimulationGrid_List = np.ndarray.tolist(SimulationGrid)
 
+    SGmax, SGmin = SimulationGrid.max(), SimulationGrid.min()
     DS_Threshold = DS_DistanceThreshold_factor*(SGmax-SGmin)
+
     # specify hard data pattern
     Collection_y_List, Collection_x_List = Specify_ConditioningDataSequence_Spiral(DS_SearchingRadius)
         
